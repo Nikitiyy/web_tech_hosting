@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 import { loadProducts } from "./load_products.js";
 
 export async function products(path) {
@@ -90,7 +92,7 @@ export async function products(path) {
     };
     
     document.getElementById('button_logout').onclick = async () => {
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -103,7 +105,7 @@ export async function products(path) {
 // Глобальная функция добавления в корзину
 window.addToCart = async function(productId) {
     try {
-        const addRes = await fetch('/api/cart/add', {
+        const addRes = await fetch(`${API_URL}/api/cart/add`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'same-origin',

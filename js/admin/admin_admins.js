@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 import { loadAdminName } from "./loadAdminName.js";
 
 export function admin_admins() {
@@ -56,7 +58,7 @@ export function admin_admins() {
     
     document.getElementById('button_back').onclick = () => history.back();
     document.getElementById('button_logout').onclick = async () => {
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -71,7 +73,7 @@ async function loadAdminsList() {
     if (!tbody) return;
     
     try {
-        const res = await fetch('/api/admins', { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/admins`, { credentials: 'same-origin' });
         const result = await res.json();
         
         if (!result.success || !result.admins || result.admins.length === 0) {
@@ -102,7 +104,7 @@ async function loadAdminsList() {
 window.deleteAdmin = async function(id) {
     if (!confirm('Удалить администратора?')) return;
     try {
-        const res = await fetch(`/api/admins/${id}`, { method: 'DELETE', credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/admins/${id}`, { method: 'DELETE', credentials: 'same-origin' });
         const result = await res.json();
         if (result.success) {
             Toastify({ text: 'Администратор удалён', duration: 2000, gravity: 'top', position: 'center', className: 'toastify-success' }).showToast();

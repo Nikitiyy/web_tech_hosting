@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 export async function loadProducts(category, searchQuery) {
     const container = document.getElementById('products-container');
     const infoElement = document.getElementById('search-info');
@@ -9,7 +11,7 @@ export async function loadProducts(category, searchQuery) {
         
         if (searchQuery && searchQuery.trim().length >= 2) {
             // Поиск товаров
-            const res = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}`, { credentials: 'same-origin' });
+            const res = await fetch(`${API_URL}/api/search?q=${encodeURIComponent(searchQuery)}`, { credentials: 'same-origin' });
             const result = await res.json();
             
             if (result.success) {
@@ -28,7 +30,7 @@ export async function loadProducts(category, searchQuery) {
         } else {
             // Загрузка по категории
             const categoryParam = category === 'all' ? '' : `?category=${category}`;
-            const res = await fetch(`/api/products${categoryParam}`, { credentials: 'same-origin' });
+            const res = await fetch(`${API_URL}/api/products${categoryParam}`, { credentials: 'same-origin' });
             const result = await res.json();
             
             if (result.success) {

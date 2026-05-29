@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 import { loadAdminName } from './loadAdminName.js';
 
 export function admin_reservations() {
@@ -55,7 +57,7 @@ export function admin_reservations() {
 
     document.getElementById('button_back').onclick = () => history.back();
     document.getElementById('button_logout').onclick = async () => {
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -66,7 +68,7 @@ async function loadReservations() {
     if (!tbody) return;
 
     try {
-        const res = await fetch('/api/admin/reservations', { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/admin/reservations`, { credentials: 'same-origin' });
         const result = await res.json();
 
         if (!result.success || !result.reservations || result.reservations.length === 0) {
@@ -94,7 +96,7 @@ async function loadReservations() {
 window.deleteReservation = async function(id) {
     if (!confirm('Удалить бронирование?')) return;
     try {
-        const res = await fetch(`/api/admin/reservations/${id}`, {
+        const res = await fetch(`${API_URL}/api/admin/reservations/${id}`, {
             method: 'DELETE',
             credentials: 'same-origin'
         });

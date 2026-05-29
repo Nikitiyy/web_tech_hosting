@@ -1,4 +1,7 @@
 // Функция отображения деталей товара
+
+import API_URL from './config.js';
+
 export async function productDetails(productId) { 
     const main = document.querySelector('body');
     if (!productId) {
@@ -8,7 +11,7 @@ export async function productDetails(productId) {
     }
     
     try {
-        const res = await fetch(`/api/products/${productId}`, { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/products/${productId}`, { credentials: 'same-origin' });
         const result = await res.json();
         
         if (!result.success || !result.product) {
@@ -84,7 +87,7 @@ export async function productDetails(productId) {
         // Обработчик добавления в корзину
         document.getElementById('button_add_to_cart').onclick = async () => {
             try {
-                const addRes = await fetch('/api/cart/add', {
+                const addRes = await fetch(`${API_URL}/api/cart/add`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'same-origin',
@@ -144,7 +147,7 @@ export async function productDetails(productId) {
         document.getElementById('button_back').onclick = () => history.back();
         
         document.getElementById('button_logout').onclick = async () => {
-            await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+            await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
             window.router('/');
             history.pushState({}, '', '/');
         };

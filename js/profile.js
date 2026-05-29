@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 export function profile() {
     console.log("Profile");
     const main = document.querySelector('body');
@@ -131,7 +133,7 @@ export function profile() {
     
     const button_logout = document.getElementById('button_logout');
     button_logout.onclick = async () => {
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -139,7 +141,7 @@ export function profile() {
 
 async function loadProfileData() {
     try {
-        const res = await fetch('/api/profile', { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/profile`, { credentials: 'same-origin' });
         const result = await res.json();
         
         if (result.success && result.user) {

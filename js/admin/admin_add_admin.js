@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 import { loadAdminName } from "./loadAdminName.js";
 
 export function admin_add_admin() {
@@ -58,7 +60,7 @@ export function admin_add_admin() {
     
     document.getElementById('button_back').onclick = () => history.back();
     document.getElementById('button_logout').onclick = async () => {
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -82,7 +84,7 @@ export function admin_add_admin() {
         }
         
         try {
-            const res = await fetch('/api/admins', {
+            const res = await fetch(`${API_URL}/api/admins`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'same-origin',

@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 import { loadAdminName } from './loadAdminName.js';
 
 export function admin_menu() {
@@ -57,7 +59,7 @@ export function admin_menu() {
     
     const button_logout = document.getElementById('button_logout');
     button_logout.onclick = async () => {        
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };

@@ -1,5 +1,7 @@
 // router доступен через window.router
 
+import API_URL from './config.js';
+
 export function login() {
     const main_body = `
     
@@ -64,7 +66,7 @@ export function login() {
             password: input_password.value, 
             role: select_role.value
         }
-        const res = await fetch('/api/login', {
+        const res = await fetch(`${API_URL}/api/login`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -201,7 +203,7 @@ export function reg() {
             password
         };
 
-        const res = await fetch('/api/reg', {
+        const res = await fetch(`${API_URL}/api/reg`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

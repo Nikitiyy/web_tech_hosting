@@ -1,6 +1,8 @@
+import API_URL from './config.js';
+
 export async function loadCategories() {
     try {
-        const res = await fetch('/api/categories', { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/categories`, { credentials: 'same-origin' });
         const result = await res.json();
 
         if (result.success) {

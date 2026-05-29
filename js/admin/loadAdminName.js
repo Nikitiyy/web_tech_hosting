@@ -1,6 +1,8 @@
+import API_URL from './config.js';
+
 export async function loadAdminName() {
     try {
-        const res = await fetch('/api/profile', { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/profile`, { credentials: 'same-origin' });
         const result = await res.json();
 
         const adminNameEl = document.getElementById('admin-name');

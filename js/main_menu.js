@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 export function main_menu() {
     const main = document.querySelector('body');
     main.innerHTML = '';    
@@ -96,7 +98,7 @@ export function main_menu() {
     
     const button_logout = document.getElementById('button_logout');
     button_logout.onclick = async () => {        
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };

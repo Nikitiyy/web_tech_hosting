@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 import { loadAdminName } from "./loadAdminName.js";
 
 export function admin_edit_products(path) {
@@ -95,7 +97,7 @@ export function admin_edit_products(path) {
     
     document.getElementById('button_back').onclick = () => history.back();
     document.getElementById('button_logout').onclick = async () => {
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -109,7 +111,7 @@ export function admin_edit_products(path) {
 
 async function loadProductData(productId) {
     try {
-        const res = await fetch(`/api/products/${productId}`, { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/products/${productId}`, { credentials: 'same-origin' });
         const result = await res.json();
         
         if (!result.success) {
@@ -157,7 +159,7 @@ window.toggleImageKeep = function(imgId) {
 
 async function loadCategoriesForEdit() {
     try {
-        const res = await fetch('/api/categories', { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/categories`, { credentials: 'same-origin' });
         const result = await res.json();
         
         if (result.success) {
@@ -189,7 +191,7 @@ async function saveProduct(productId) {
     }
     
     try {
-        const res = await fetch(`/api/products/${productId}`, {
+        const res = await fetch(`${API_URL}/api/products/${productId}`, {
             method: 'PUT',
             credentials: 'same-origin',
             body: formData

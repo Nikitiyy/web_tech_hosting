@@ -2,6 +2,8 @@ import { router } from './router.js';
 
 window.router = router;
 
+import API_URL from '../config.js';
+
 import './auth.js';
 import './cart.js';
 import './categories.js';
@@ -27,7 +29,7 @@ window.addEventListener('popstate', () => {
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const res = await fetch('/api/check-auth', { credentials: 'same-origin' });
+    const res = await fetch(`${API_URL}/api/check-auth`, { credentials: 'same-origin' });
     const result = await res.json();
     
     if (result.isLoggedIn) {

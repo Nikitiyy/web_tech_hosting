@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 import { loadAdminName } from './loadAdminName.js';
 
 export function admin_add_category() {
@@ -66,7 +68,7 @@ export function admin_add_category() {
     
     document.getElementById('button_back').onclick = () => history.back();
     document.getElementById('button_logout').onclick = async () => {
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -93,7 +95,7 @@ export function admin_add_category() {
         };
         
         try {
-            const res = await fetch('/api/categories', {
+            const res = await fetch(`${API_URL}/api/categories`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'same-origin',
@@ -116,7 +118,7 @@ export function admin_add_category() {
 
 async function loadParentCategories() {
     try {
-        const res = await fetch('/api/categories', { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/categories`, { credentials: 'same-origin' });
         const result = await res.json();
 
         if (result.success && result.categories) {

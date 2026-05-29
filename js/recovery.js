@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 export function recovery() {
     const main_body = `
     <div class="background-div">
@@ -40,7 +42,7 @@ export function recovery() {
             email: input_email.value
         };
 
-        const res = await fetch('/api/recovery', {
+        const res = await fetch(`${API_URL}/api/recovery`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -160,7 +162,7 @@ export function reset_password() {
             return;
         }
 
-        const res = await fetch('/api/reset-password', {
+        const res = await fetch(`${API_URL}/api/reset-password`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

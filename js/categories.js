@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 export async function categories() {
     const main = document.querySelector('body');
     main.innerHTML = '';
@@ -88,7 +90,7 @@ export async function categories() {
 
     const button_logout = document.getElementById('button_logout');
     button_logout.onclick = async () => {
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -104,7 +106,7 @@ async function loadUserCategories() {
     if (!container) return;
     
     try {
-        const res = await fetch('/api/categories', { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/categories`, { credentials: 'same-origin' });
         const result = await res.json();
         
         if (!result.success || !result.categories || result.categories.length === 0) {

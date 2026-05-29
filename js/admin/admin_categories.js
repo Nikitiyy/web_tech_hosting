@@ -1,8 +1,10 @@
+import API_URL from './config.js';
+
 import { loadAdminName } from './loadAdminName.js';
 
 async function loadCategories() {
     try {
-        const res = await fetch('/api/categories', { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/categories`, { credentials: 'same-origin' });
         const result = await res.json();
 
         if (result.success) {
@@ -81,7 +83,7 @@ export function admin_categories() {
     
     document.getElementById('button_back').onclick = () => history.back();
     document.getElementById('button_logout').onclick = async () => {
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -120,7 +122,7 @@ window.deleteCategory = async function(id) {
     if (!confirm('Удалить категорию?')) return;
     
     try {
-        const res = await fetch(`/api/categories/${id}`, {
+        const res = await fetch(`${API_URL}/api/categories/${id}`, {
             method: 'DELETE',
             credentials: 'same-origin'
         });

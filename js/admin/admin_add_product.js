@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 import { loadAdminName } from "./loadAdminName.js";
 import {loadCategories} from "./loadCategories.js";
 
@@ -123,7 +125,7 @@ export function admin_add_product() {
     
     const button_logout = document.getElementById('button_logout');
     button_logout.onclick = async () => {        
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -150,7 +152,7 @@ export function admin_add_product() {
         }
         
         try {
-            const res = await fetch('/api/products', {
+            const res = await fetch(`${API_URL}/api/products`, {
                 method: 'POST',
                 credentials: 'same-origin',
                 body: formData

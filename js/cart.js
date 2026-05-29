@@ -1,3 +1,5 @@
+import API_URL from './config.js';
+
 export function cart() {
     const main = document.querySelector('body');
     main.innerHTML = '';
@@ -111,7 +113,7 @@ export function cart() {
     document.getElementById('button_back').onclick = () => history.back();
     
     document.getElementById('button_logout').onclick = async () => {
-        await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -123,7 +125,7 @@ export function cart() {
 
     document.getElementById('button_book').onclick = async () => {
         try {
-            const res = await fetch('/api/reservations/book', {
+            const res = await fetch(`${API_URL}/api/reservations/book`, {
                 method: 'POST',
                 credentials: 'same-origin'
             });
@@ -149,7 +151,7 @@ async function loadCart() {
     if (!tbody) return;
     
     try {
-        const res = await fetch('/api/cart', { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/cart`, { credentials: 'same-origin' });
         const result = await res.json();
         
         if (!result.success) {
@@ -195,7 +197,7 @@ async function loadCart() {
 
 window.removeFromCart = async function(cartItemId) {
     try {
-        const res = await fetch(`/api/cart/${cartItemId}`, {
+        const res = await fetch(`${API_URL}/api/cart/${cartItemId}`, {
             method: 'DELETE',
             credentials: 'same-origin'
         });
@@ -214,7 +216,7 @@ window.removeFromCart = async function(cartItemId) {
 
 window.updateQuantity = async function(cartItemId, quantity) {
     try {
-        const res = await fetch('/api/cart/update', {
+        const res = await fetch(`${API_URL}/api/cart/update`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'same-origin',
