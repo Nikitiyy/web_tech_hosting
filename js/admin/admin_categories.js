@@ -4,7 +4,7 @@ import { loadAdminName } from './loadAdminName.js';
 
 async function loadCategories() {
     try {
-        const res = await fetch(`${API_URL}/api/categories`, { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/categories`, { credentials: 'include' });
         const result = await res.json();
 
         if (result.success) {
@@ -83,7 +83,7 @@ export function admin_categories() {
     
     document.getElementById('button_back').onclick = () => history.back();
     document.getElementById('button_logout').onclick = async () => {
-        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -124,7 +124,7 @@ window.deleteCategory = async function(id) {
     try {
         const res = await fetch(`${API_URL}/api/categories/${id}`, {
             method: 'DELETE',
-            credentials: 'same-origin'
+            credentials: 'include'
         });
         const result = await res.json();
         

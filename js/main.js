@@ -29,7 +29,7 @@ window.addEventListener('popstate', () => {
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const res = await fetch(`${API_URL}/api/check-auth`, { credentials: 'same-origin' });
+    const res = await fetch(`${API_URL}/api/check-auth`, { credentials: 'include' });
     const result = await res.json();
     
     if (result.isLoggedIn) {

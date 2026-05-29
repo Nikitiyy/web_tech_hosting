@@ -92,7 +92,7 @@ export async function products(path) {
     };
     
     document.getElementById('button_logout').onclick = async () => {
-        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -108,7 +108,7 @@ window.addToCart = async function(productId) {
         const addRes = await fetch(`${API_URL}/api/cart/add`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            credentials: 'same-origin',
+            credentials: 'include',
             body: JSON.stringify({ product_id: productId, quantity: 1 })
         });
         const addResult = await addRes.json();

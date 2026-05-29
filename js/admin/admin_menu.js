@@ -59,7 +59,7 @@ export function admin_menu() {
     
     const button_logout = document.getElementById('button_logout');
     button_logout.onclick = async () => {        
-        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
         window.router('/');
         history.pushState({}, '', '/');
     };

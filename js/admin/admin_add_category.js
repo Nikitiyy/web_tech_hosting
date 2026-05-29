@@ -68,7 +68,7 @@ export function admin_add_category() {
     
     document.getElementById('button_back').onclick = () => history.back();
     document.getElementById('button_logout').onclick = async () => {
-        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -98,7 +98,7 @@ export function admin_add_category() {
             const res = await fetch(`${API_URL}/api/categories`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                credentials: 'same-origin',
+                credentials: 'include',
                 body: JSON.stringify(data)
             });
             
@@ -118,7 +118,7 @@ export function admin_add_category() {
 
 async function loadParentCategories() {
     try {
-        const res = await fetch(`${API_URL}/api/categories`, { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/categories`, { credentials: 'include' });
         const result = await res.json();
 
         if (result.success && result.categories) {

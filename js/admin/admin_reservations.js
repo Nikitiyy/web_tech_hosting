@@ -57,7 +57,7 @@ export function admin_reservations() {
 
     document.getElementById('button_back').onclick = () => history.back();
     document.getElementById('button_logout').onclick = async () => {
-        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -68,7 +68,7 @@ async function loadReservations() {
     if (!tbody) return;
 
     try {
-        const res = await fetch(`${API_URL}/api/admin/reservations`, { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/admin/reservations`, { credentials: 'include' });
         const result = await res.json();
 
         if (!result.success || !result.reservations || result.reservations.length === 0) {
@@ -98,7 +98,7 @@ window.deleteReservation = async function(id) {
     try {
         const res = await fetch(`${API_URL}/api/admin/reservations/${id}`, {
             method: 'DELETE',
-            credentials: 'same-origin'
+            credentials: 'include'
         });
         const result = await res.json();
 

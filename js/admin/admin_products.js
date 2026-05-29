@@ -72,7 +72,7 @@ export function admin_products() {
     
     const button_logout = document.getElementById('button_logout');
     button_logout.onclick = async () => {        
-        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -91,7 +91,7 @@ async function loadAdminProducts() {
     tbody.innerHTML = '<tr><td colspan="6">Загрузка...</td></tr>';
     
     try {
-        const res = await fetch(`${API_URL}/api/products?category=all`, { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/products?category=all`, { credentials: 'include' });
         const result = await res.json();
         
         if (!result.success || !result.products || result.products.length === 0) {
@@ -120,7 +120,7 @@ async function loadAdminProducts() {
 window.deleteProduct = async function(id) {
     if (!confirm('Удалить товар?')) return;
     try {
-        const res = await fetch(`${API_URL}/api/products/${id}`, { method: 'DELETE', credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/products/${id}`, { method: 'DELETE', credentials: 'include' });
         const result = await res.json();
         if (result.success) {
             Toastify({ text: 'Товар удалён', duration: 2000, gravity: 'top', position: 'center', className: 'toastify-success' }).showToast();
@@ -135,7 +135,7 @@ window.deleteProduct = async function(id) {
 
 window.editProduct = async function(id) {
     try {
-        const res = await fetch(`${API_URL}/api/products/${id}`, { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/products/${id}`, { credentials: 'include' });
         const result = await res.json();
         
         if (!result.success) {

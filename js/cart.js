@@ -113,7 +113,7 @@ export function cart() {
     document.getElementById('button_back').onclick = () => history.back();
     
     document.getElementById('button_logout').onclick = async () => {
-        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -127,7 +127,7 @@ export function cart() {
         try {
             const res = await fetch(`${API_URL}/api/reservations/book`, {
                 method: 'POST',
-                credentials: 'same-origin'
+                credentials: 'include'
             });
             const result = await res.json();
 
@@ -151,7 +151,7 @@ async function loadCart() {
     if (!tbody) return;
     
     try {
-        const res = await fetch(`${API_URL}/api/cart`, { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/cart`, { credentials: 'include' });
         const result = await res.json();
         
         if (!result.success) {
@@ -199,7 +199,7 @@ window.removeFromCart = async function(cartItemId) {
     try {
         const res = await fetch(`${API_URL}/api/cart/${cartItemId}`, {
             method: 'DELETE',
-            credentials: 'same-origin'
+            credentials: 'include'
         });
         const result = await res.json();
         
@@ -219,7 +219,7 @@ window.updateQuantity = async function(cartItemId, quantity) {
         const res = await fetch(`${API_URL}/api/cart/update`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            credentials: 'same-origin',
+            credentials: 'include',
             body: JSON.stringify({ cart_item_id: cartItemId, quantity: quantity })
         });
         const result = await res.json();

@@ -133,7 +133,7 @@ export function profile() {
     
     const button_logout = document.getElementById('button_logout');
     button_logout.onclick = async () => {
-        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -141,7 +141,7 @@ export function profile() {
 
 async function loadProfileData() {
     try {
-        const res = await fetch(`${API_URL}/api/profile`, { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/profile`, { credentials: 'include' });
         const result = await res.json();
         
         if (result.success && result.user) {

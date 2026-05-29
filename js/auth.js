@@ -71,7 +71,7 @@ export function login() {
             headers: {
                 'Content-type': 'application/json'
             },
-            credentials: 'same-origin',
+            credentials: 'include',
             body: JSON.stringify(data)
         });
         const result = await res.json();
@@ -208,7 +208,7 @@ export function reg() {
             headers: {
                 'Content-type': 'application/json'
             },
-            credentials: 'same-origin',
+            credentials: 'include',
             body: JSON.stringify(data)
         });
 

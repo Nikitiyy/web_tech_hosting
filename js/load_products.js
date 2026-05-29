@@ -11,7 +11,7 @@ export async function loadProducts(category, searchQuery) {
         
         if (searchQuery && searchQuery.trim().length >= 2) {
             // Поиск товаров
-            const res = await fetch(`${API_URL}/api/search?q=${encodeURIComponent(searchQuery)}`, { credentials: 'same-origin' });
+            const res = await fetch(`${API_URL}/api/search?q=${encodeURIComponent(searchQuery)}`, { credentials: 'include' });
             const result = await res.json();
             
             if (result.success) {
@@ -30,7 +30,7 @@ export async function loadProducts(category, searchQuery) {
         } else {
             // Загрузка по категории
             const categoryParam = category === 'all' ? '' : `?category=${category}`;
-            const res = await fetch(`${API_URL}/api/products${categoryParam}`, { credentials: 'same-origin' });
+            const res = await fetch(`${API_URL}/api/products${categoryParam}`, { credentials: 'include' });
             const result = await res.json();
             
             if (result.success) {

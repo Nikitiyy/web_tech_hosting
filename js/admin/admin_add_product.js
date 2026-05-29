@@ -125,7 +125,7 @@ export function admin_add_product() {
     
     const button_logout = document.getElementById('button_logout');
     button_logout.onclick = async () => {        
-        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -154,7 +154,7 @@ export function admin_add_product() {
         try {
             const res = await fetch(`${API_URL}/api/products`, {
                 method: 'POST',
-                credentials: 'same-origin',
+                credentials: 'include',
                 body: formData
             });
             

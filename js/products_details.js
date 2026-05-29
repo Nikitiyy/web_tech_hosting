@@ -11,7 +11,7 @@ export async function productDetails(productId) {
     }
     
     try {
-        const res = await fetch(`${API_URL}/api/products/${productId}`, { credentials: 'same-origin' });
+        const res = await fetch(`${API_URL}/api/products/${productId}`, { credentials: 'include' });
         const result = await res.json();
         
         if (!result.success || !result.product) {
@@ -90,7 +90,7 @@ export async function productDetails(productId) {
                 const addRes = await fetch(`${API_URL}/api/cart/add`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    credentials: 'same-origin',
+                    credentials: 'include',
                     body: JSON.stringify({ product_id: productId, quantity: 1 })
                 });
                 const addResult = await addRes.json();
@@ -147,7 +147,7 @@ export async function productDetails(productId) {
         document.getElementById('button_back').onclick = () => history.back();
         
         document.getElementById('button_logout').onclick = async () => {
-            await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+            await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
             window.router('/');
             history.pushState({}, '', '/');
         };

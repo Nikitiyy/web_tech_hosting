@@ -60,7 +60,7 @@ export function admin_add_admin() {
     
     document.getElementById('button_back').onclick = () => history.back();
     document.getElementById('button_logout').onclick = async () => {
-        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'same-origin' });
+        await fetch(`${API_URL}/api/logout`, { method: 'POST', credentials: 'include' });
         window.router('/');
         history.pushState({}, '', '/');
     };
@@ -87,7 +87,7 @@ export function admin_add_admin() {
             const res = await fetch(`${API_URL}/api/admins`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                credentials: 'same-origin',
+                credentials: 'include',
                 body: JSON.stringify({ login, password })
             });
             
